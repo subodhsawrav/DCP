@@ -1,5 +1,70 @@
 #include <stdio.h>
 
+
+/* Given an array of integers, return a new array such that each element at index i of 
+ * the new array is the product of all the numbers in the original array except the one at i.
+ *
+ * For example, if our input was [1, 2, 3, 4, 5], the expected output would be [120, 60, 40, 30, 24]. 
+ * If our input was [3, 2, 1], the expected output would be [2, 3, 6].
+ */
+
+int rightEleProduct(int arr[], int i, int n) {
+    int mul = 1;
+    for(int r = i+1; r < n; r++) {
+        mul = mul * arr[r];
+    }
+    printf("mul[%d] n[%d] i[%d]\n", mul, n, i);
+    return mul;
+}
+int leftEleProduct(int arr[],int i) {
+    int mul = 1;
+    for(int l = 0; l < i; l++) {
+        mul = mul * arr[l];
+    }
+    printf("mul[%d] i[%d]\n", mul, i);
+    return mul;
+}
+
+int dcp2_m2(void){
+    int arr[] = /*{1, 2, 3, 4, 5}*/
+                {3, 2, 1};
+    int n = sizeof(arr)/sizeof(arr[0]);
+    int retArr[n];
+    int mul;
+
+    for (int i = 0; i < n; i++) {
+        retArr[i] = leftEleProduct(arr, i) * rightEleProduct(arr, i, n);
+    }
+    for (int i = 0; i < n; i++) {
+        printf("%d ", retArr[i]);
+    }
+    return 0;
+}
+
+int dcp2_m1(void){
+    int arr[] = /*{1, 2, 3, 4, 5}*/
+                {3, 2, 1};
+    int n = sizeof(arr)/sizeof(arr[0]);
+    int retArr[n];
+    int mul;
+
+    printf("n=%d\n", n);
+    for (int i = 0; i < n; i++) {
+        mul = 1;
+        for (int j = n-1; j >= 0 ; j--) {
+            if (i == j)
+                continue;
+
+            mul = mul * arr[j];
+        }
+        retArr[i] = mul;
+    }
+    for (int i = 0; i < n; i++) {
+        printf("%d ", retArr[i]);
+    }
+    return 0;
+}
+
 /*
 * This problem was recently asked by Google.
 * Given a list of numbers and a number k, return whether any two numbers from the list add up to k.
@@ -49,7 +114,13 @@ int dcp1_m1(void){
 }
 
 int main() {
+    /*
     dcp1_m1();
     dcp1_m2();
+    dcp2_m1();
+    */
+
+    dcp2_m2();
+
     return 0;
 }
