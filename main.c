@@ -8,6 +8,27 @@
  * If our input was [3, 2, 1], the expected output would be [2, 3, 6].
  */
 
+int dcp2_m3(void){
+    int arr[] = /*{1, 2, 3, 4, 5}*/
+                {3, 2, 1};
+    int n = sizeof(arr)/sizeof(arr[0]);
+    int retArr[n];
+    int mul = 1;
+
+    for (int i = 0; i < n; i++) {
+        mul = mul * arr[i];
+    }
+
+    for (int i = 0; i < n; i++) {
+        retArr[i] = mul/arr[i];
+    }
+
+    for (int i = 0; i < n; i++) {
+        printf("%d ", retArr[i]);
+    }
+    return 0;
+}
+
 int rightEleProduct(int arr[], int i, int n) {
     int mul = 1;
     for(int r = i+1; r < n; r++) {
@@ -118,9 +139,10 @@ int main() {
     dcp1_m1();
     dcp1_m2();
     dcp2_m1();
+    dcp2_m2();
     */
 
-    dcp2_m2();
+    dcp2_m3();
 
     return 0;
 }
